@@ -128,17 +128,13 @@ Run a simulation of the IdealGas model.
 """
 function demo()
 	box = idealgas()
-	abmvideo(
-		"IdealGas.mp4", box, agent_step!;
-		framerate = 20, frames = 200,
-		title = "Simple particles in an ideal gas",
-		ac=:blue, as=20, am=:circle
-	)
+	
+	playground, = abmplayground( box, idealgas;
+	agent_step!, 
+	#params
+)
 
-	agentdata, = run!( box, agent_step!, 500; adata=[(momentum,sum),(kinetic_energy,sum)])
-
-	# Return momentum and energy statistics:
-	agentdata
+	playground 
 end
 
 end	# of module IdealGas
